@@ -1,12 +1,12 @@
 <?php
 
 
-// metabox for index hero section
+// metabox for index testimonial section
 function metabox_for_index_testimonial_section(array $index_section_tetimonial)
 {
     $index_section_tetimonial[] = array(
         'id' => 'index_page_section_testimonial',
-        'title' => 'Index Hero Section',
+        'title' => 'Index testimonial Section',
         'object_types' => array('page'),
         'show_on' => array(
             'key' => 'page-template',

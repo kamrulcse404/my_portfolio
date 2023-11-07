@@ -23,9 +23,9 @@ function get_contact_data()
         'message' => $message,
     );
 
-    echo "<pre>";
-    print_r($data);
-    exit;
+    // echo "<pre>";
+    // print_r($data);
+    // exit;
 
 
     global $wpdb;

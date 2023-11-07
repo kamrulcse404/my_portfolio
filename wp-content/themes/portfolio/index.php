@@ -9,7 +9,7 @@ get_header();
 
 <!-- Wrapper -->
 <div class="wrapper">
-    <!-- Section - Hero Started done -->
+    <!-- Section - Hero Started final -->
     <section class="lui-section lui-section-hero lui-gradient-top" id="started-section">
         <div class="container">
             <!-- Hero Started -->
@@ -79,7 +79,7 @@ get_header();
         </div>
     </section>
 
-    <!-- Section - Services done -->
+    <!-- Section - Services final -->
     <section class="lui-section lui-gradient-bottom" id="services-section">
         <!-- Heading -->
         <div class="lui-heading">
@@ -351,7 +351,7 @@ get_header();
         </div>
     </section>
 
-    <!-- Section - Works -->
+    <!-- Section - Works all most -->
     <section class="lui-section lui-gradient-top" id="works-section">
         <!-- Heading -->
         <div class="lui-heading">
@@ -367,7 +367,7 @@ get_header();
             </div>
         </div>
 
-        <!-- Works -->
+        <!-- Works not done -->
         <div class="v-line v-line-right">
             <div class="container">
                 <div class="works-box">
@@ -411,12 +411,11 @@ get_header();
 
                         $query = new WP_Query($args);
 
-                        // Check if there are any portfolio items
                         if ($query->have_posts()) {
                             while ($query->have_posts()) {
                                 $query->the_post();
-
                                 $categories = get_the_terms(get_the_ID(), 'work_cat');
+
 
                                 // Check if there are categories
                                 if ($categories && !is_wp_error($categories)) {
@@ -427,12 +426,12 @@ get_header();
                                     $category_list = implode(' ', $category_slugs);
                                 }
 
-
+                                print_r($category_list);
 
                         ?>
 
 
-                                <div class="works-col col-xs-12 col-sm-12 col-md-12 col-lg-12 sorting-branding sorting-photo ">
+                                <div class="works-col col-xs-12 col-sm-12 col-md-12 col-lg-12 sorting-branding sorting-photo <?php echo esc_attr($category_list); ?>">
                                     <div class="works-item scrolla-element-anim-1 scroll-animate" data-animate="active">
                                         <div class="image">
                                             <div class="img">
@@ -484,17 +483,17 @@ get_header();
         </div>
     </section>
 
-    <!-- Section - Resume -->
+    <!-- Section - Resume final -->
     <section class="lui-section lui-gradient-bottom" id="resume-section">
         <!-- Heading -->
         <div class="lui-heading">
             <div class="container">
                 <div class="m-titles align-center">
                     <h2 class="m-title splitting-text-anim-1 scroll-animate" data-splitting="words" data-animate="active">
-                        <span> Resume </span>
+                        <span> <?php echo get_post_meta(get_the_ID(), 'index_resume_heading_title', true) ?> </span>
                     </h2>
                     <div class="m-subtitle splitting-text-anim-1 scroll-animate" data-splitting="words" data-animate="active">
-                        <span> my <b>Story</b> </span>
+                        <span> <?php echo get_post_meta(get_the_ID(), 'index_resume_heading_sub_title', true) ?> </span>
                     </div>
                 </div>
             </div>
@@ -509,76 +508,61 @@ get_header();
                             <span> Education </span>
                         </h5>
                         <div class="history-items">
-                            <div class="history-item lui-collapse-item opened scrolla-element-anim-1 scroll-animate" data-animate="active">
-                                <h6 class="name lui-collapse-btn active">
-                                    <span>
-                                        Bachelor Of Computer Science In Information Technology
-                                    </span>
-                                </h6>
-                                <div class="history-content">
-                                    <div class="subname">
-                                        <span>
-                                            Obour Higher Institute Of Engineering&Technology
-                                        </span>
-                                    </div>
-                                    <div class="date lui-subtitle">
-                                        <span> 2016 - 2020 </span>
-                                    </div>
-                                    <div class="text">
-                                        <div>
-                                            <p>
-                                                Computer Science professional with a strong
-                                                foundation in theoretical concepts and practical
-                                                application. Proficient in various programming
-                                                languages, algorithms, data structures.
-                                            </p>
+
+
+                            <?php
+                            $educations = get_post_meta(get_the_ID(), "index_resume_ed_item", true);
+                            if (count($educations) > 0) {
+                                foreach ($educations as $key => $education) {
+
+                                    $dept = $inst = $duration = $des = '';
+                                    if (isset($education['index_depart_name'])) {
+                                        $dept = esc_html($education['index_depart_name']);
+                                    }
+
+                                    if (isset($education['index_institute_name'])) {
+                                        $inst = esc_html($education['index_institute_name']);
+                                    }
+
+                                    if (isset($education['index_subject_duration'])) {
+                                        $duration = esc_html($education['index_subject_duration']);
+                                    }
+
+                                    if (isset($education['index_short_desc_about_subject'])) {
+                                        $des = esc_html($education['index_short_desc_about_subject']);
+                                    }
+
+                            ?>
+
+                                    <div class="history-item lui-collapse-item opened scrolla-element-anim-1 scroll-animate" data-animate="active">
+                                        <h6 class="name lui-collapse-btn active">
+                                            <span>
+                                                <?php echo $dept; ?>
+                                            </span>
+                                        </h6>
+                                        <div class="history-content">
+                                            <div class="subname">
+                                                <span>
+                                                    <?php echo $inst; ?>
+                                                </span>
+                                            </div>
+                                            <div class="date lui-subtitle">
+                                                <span> <?php echo $duration; ?> </span>
+                                            </div>
+                                            <div class="text">
+                                                <div>
+                                                    <p><?php echo $des; ?>
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="history-item lui-collapse-item scrolla-element-anim-1 scroll-animate" data-animate="active">
-                                <h6 class="name lui-collapse-btn">
-                                    <span> Ministry Of Communications And Information Technology
-                                    </span>
-                                </h6>
-                                <div class="history-content">
-                                    <div class="subname">
-                                        <span> Flutter Developer And Native Android | Internship
-                                        </span>
-                                    </div>
-                                    <div class="date lui-subtitle">
-                                        <span>Aug 2020 - Nov 2020 </span>
-                                    </div>
-                                    <div class="text">
-                                        <div>
-                                            <p>
-                                                Ministry Of Communications And Information Technology
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="history-item lui-collapse-item scrolla-element-anim-1 scroll-animate" data-animate="active">
-                                <h6 class="name lui-collapse-btn">
-                                    <span> ITI graduation track web </span>
-                                </h6>
-                                <div class="history-content">
-                                    <div class="subname">
-                                        <span> Information Technology Institute </span>
-                                    </div>
-                                    <div class="date lui-subtitle">
-                                        <span> April 2022 - 2022 Septamber </span>
-                                    </div>
-                                    <div class="text">
-                                        <div>
-                                            <p>
-                                                Iti Graduation Front-End Web Development And Cross
-                                                Plateform.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
+                            <?php
+                                }
+                            }
+                            ?>
+
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
@@ -586,68 +570,62 @@ get_header();
                             <span> Experience </span>
                         </h5>
                         <div class="history-items">
-                            <div class="history-item lui-collapse-item opened scrolla-element-anim-1 scroll-animate" data-animate="active">
-                                <h6 class="name lui-collapse-btn active">
-                                    <span> Instructor web developer </span>
-                                </h6>
-                                <div class="history-content">
-                                    <div class="subname">
-                                        <span> ATEC Al-Obour Training &amp; Education Center </span>
-                                    </div>
-                                    <div class="date lui-subtitle">
-                                        <span> Octoper 2022 - <b>Present</b> </span>
-                                    </div>
-                                    <div class="text">
-                                        <div>
-                                            <p>
 
-                                            </p>
+
+                            <?php
+                            $experiences = get_post_meta(get_the_ID(), "index_resume_exp_item", true);
+                            if (count($experiences) > 0) {
+                                foreach ($experiences as $key => $experience) {
+
+                                    $designation = $company = $duration = $des = '';
+                                    if (isset($experience['index_exp_designation_name'])) {
+                                        $designation = esc_html($experience['index_exp_designation_name']);
+                                    }
+
+                                    if (isset($experience['index_exp_company_name'])) {
+                                        $company = esc_html($experience['index_exp_company_name']);
+                                    }
+
+                                    if (isset($experience['index_exp_duration_name'])) {
+                                        $duration = esc_html($experience['index_exp_duration_name']);
+                                    }
+
+                                    if (isset($experience['index_exp_desc_name'])) {
+                                        $des = esc_html($experience['index_exp_desc_name']);
+                                    }
+
+
+
+
+
+                            ?>
+
+                                    <div class="history-item lui-collapse-item opened scrolla-element-anim-1 scroll-animate" data-animate="active">
+                                        <h6 class="name lui-collapse-btn active">
+                                            <span><?php echo $designation; ?> </span>
+                                        </h6>
+                                        <div class="history-content">
+                                            <div class="subname">
+                                                <span> <?php echo $company; ?> </span>
+                                            </div>
+                                            <div class="date lui-subtitle">
+                                                <span> <?php echo $duration; ?> </span>
+                                            </div>
+                                            <div class="text">
+                                                <div>
+                                                    <p>
+                                                        <?php echo $des; ?>
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="history-item lui-collapse-item scrolla-element-anim-1 scroll-animate" data-animate="active">
-                                <h6 class="name lui-collapse-btn">
-                                    <span> Front end web developer </span>
-                                </h6>
-                                <div class="history-content">
-                                    <div class="subname">
-                                        <span> El Safwah Group for advertising</span>
-                                    </div>
-                                    <div class="date lui-subtitle">
-                                        <span> March 2023 - June 2023 </span>
-                                    </div>
-                                    <div class="text">
-                                        <div>
-                                            <p>
-                                                Designing and developing web pages with team flutter.I
-                                                use wordpress for quick pages which I have been done.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="history-item lui-collapse-item scrolla-element-anim-1 scroll-animate" data-animate="active">
-                                <h6 class="name lui-collapse-btn">
-                                    <span> Freelancing </span>
-                                </h6>
-                                <div class="history-content">
-                                    <div class="subname">
-                                        <span> Facebook.com </span>
-                                    </div>
-                                    <div class="date lui-subtitle">
-                                        <span> June 2023 - <b> present </b></span>
-                                    </div>
-                                    <div class="text">
-                                        <div>
-                                            <p>
-                                                Showing my projects in my facebook account , I use facebook ads to show
-                                                to more clients.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
+                            <?php
+                                }
+                            }
+                            ?>
+
                         </div>
                     </div>
                 </div>
@@ -659,7 +637,7 @@ get_header();
         </div>
     </section>
 
-    <!-- Section - Testimonials done -->
+    <!-- Section - Testimonials final -->
     <section class="lui-section lui-gradient-center" id="testimonials-section">
         <!-- Heading -->
         <div class="lui-heading">
@@ -675,7 +653,7 @@ get_header();
             </div>
         </div>
 
-        <!-- Testimonials -->
+        <!-- Testimonials done -->
         <div class="v-line v-line-right">
             <div class="container">
                 <div class="swiper-container js-testimonials scrolla-element-anim-1 scroll-animate" data-animate="active">
@@ -738,7 +716,7 @@ get_header();
     </section>
 
 
-    <!-- Section - Contacts done form not yet -->
+    <!-- Section - Contacts done but contact form still not working -->
     <section class="lui-section lui-gradient-bottom" id="contact-section">
         <!-- Heading -->
         <div class="lui-heading">
@@ -809,7 +787,7 @@ get_header();
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
                         <div class="contacts-form scrolla-element-anim-1 scroll-animate" data-animate="active">
-                            <div class="bg-img" style="background-image: url(assets/images/pat-1.png)"></div>
+                            <div class="bg-img" style="background-image: url(<?php echo get_post_meta(get_the_ID(), 'index_contact_background_image', true) ?>"></div>
                             <div class="contacts-form">
 
 
@@ -859,9 +837,9 @@ get_header();
                                 </form>
 
 
-                                <!-- <div class="alert-success" style="display: none">
+                                <div class="alert-success" style="display: none">
                                     <p>Thanks, your message is sent successfully.</p>
-                                </div> -->
+                                </div>
                             </div>
                         </div>
                     </div>

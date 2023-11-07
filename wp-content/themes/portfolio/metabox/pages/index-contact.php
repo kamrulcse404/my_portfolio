@@ -15,6 +15,14 @@ function metabox_for_index_contact_heading_section(array $index_section_contact_
             'value' => 'index.php',
         ),
         'fields' => array(
+
+            array(
+                'id' => 'index_contact_background_image',
+                'name' => 'Contact Background Image',
+                'default' => get_template_directory_uri() . '/assets/images/pat-1.png',
+                'type' => 'file',
+            ),
+
             array(
                 'id' => 'index_conatct_heading_title',
                 'name' => 'Title',
