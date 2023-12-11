@@ -25,4 +25,19 @@ require_once('functions/database.php');
 
 // custom functions 
 require_once('functions/custom-post-type.php');
+require_once('functions/ajax_actions.php'); 
+
+// header menus 
+function register_header_menu()
+{
+    register_nav_menus(
+        array(
+            'header_menu' => __('Header Menu', 'elon')
+        )
+    );
+}
+add_action('after_setup_theme', 'register_header_menu');
+
+
+
 

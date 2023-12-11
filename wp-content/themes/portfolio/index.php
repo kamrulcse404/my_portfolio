@@ -351,7 +351,12 @@ get_header();
         </div>
     </section>
 
-    <!-- Section - Works all most -->
+
+
+
+
+
+    <!-- Section - Works done final -->
     <section class="lui-section lui-gradient-top" id="works-section">
         <!-- Heading -->
         <div class="lui-heading">
@@ -367,7 +372,7 @@ get_header();
             </div>
         </div>
 
-        <!-- Works not done -->
+        <!-- Works  done -->
         <div class="v-line v-line-right">
             <div class="container">
                 <div class="works-box">
@@ -421,17 +426,22 @@ get_header();
                                 if ($categories && !is_wp_error($categories)) {
                                     $category_slugs = array();
                                     foreach ($categories as $category) {
-                                        $category_slugs[] = $category->slug;
+                                        $branded_category_slug = 'sorting-' . $category->slug;
+
+                                        // Push the modified category slug into the array
+                                        $category_slugs[] = $branded_category_slug;
                                     }
                                     $category_list = implode(' ', $category_slugs);
                                 }
-
-                                print_r($category_list);
+                                // echo "<pre>";
+                                // // print_r($category_list); 
+                                // print_r($category_slugs); 
 
                         ?>
 
 
-                                <div class="works-col col-xs-12 col-sm-12 col-md-12 col-lg-12 sorting-branding sorting-photo <?php echo esc_attr($category_list); ?>">
+                                <div class="works-col col-xs-12 col-sm-12 col-md-12 col-lg-12 
+                                  <?php echo $category_list; ?>">
                                     <div class="works-item scrolla-element-anim-1 scroll-animate" data-animate="active">
                                         <div class="image">
                                             <div class="img">
@@ -442,16 +452,15 @@ get_header();
                                             </div>
                                         </div>
                                         <div class="desc">
-                                            <span class="category"><?php echo  $category_list ?></span>
                                             <h5 class="name">
-                                                <a href="#"><?php the_title(); ?></a>
+                                                <a href="#"><?php echo the_title(); ?></a>
                                             </h5>
                                             <div class="text">
                                                 <p>
-                                                    <?php the_excerpt(); ?>
+                                                    <?php echo the_excerpt(); ?>
                                                 </p>
                                             </div>
-                                            <!-- <a href="work-single.html" class="lnk">See project</a> -->
+                                            <a href="work-single.html" class="lnk">See project</a>
                                         </div>
                                         <div class="bg-img" style="background-image: url(<?php echo get_post_meta(get_the_ID(), 'single_work_back_image', true) ?>"></div>
                                     </div>
@@ -482,6 +491,12 @@ get_header();
             </div>
         </div>
     </section>
+
+
+
+
+
+    
 
     <!-- Section - Resume final -->
     <section class="lui-section lui-gradient-bottom" id="resume-section">
@@ -791,7 +806,7 @@ get_header();
                             <div class="contacts-form">
 
 
-                                <form id="get_contact-form" ajax_url="<?php echo admin_url('admin-ajax.php'); ?>" method="post">
+                                <form id="get_contact_form" ajax_url="<?php echo admin_url('admin-ajax.php'); ?>" >
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                             <div class="group">

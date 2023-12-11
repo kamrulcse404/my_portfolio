@@ -103,7 +103,8 @@
                                             <div class="menu-full">
                                                 <ul class="menu-full">
                                                     <li class="menu-item">
-                                                        <a class="splitting-text-anim-2" data-splitting="chars" href="<?php echo home_url() ?>">Home</a>
+                                                        <a class="splitting-text-anim-2" data-splitting="chars" href="<?php echo home_url()
+                                                                                    ?>">Home</a>
                                                     </li>
                                                     <li class="menu-item">
                                                         <a class="splitting-text-anim-2" data-splitting="chars" href="#services-section">Services</a>
@@ -120,36 +121,17 @@
                                                     <li class="menu-item">
                                                         <a class="splitting-text-anim-2" data-splitting="chars" href="#testimonials-section">Testimonials</a>
                                                     </li>
-                                                    <!-- <li class="menu-item">
-                                                        <a class="splitting-text-anim-2" data-splitting="chars" href="#pricing-section">Pricing</a>
-                                                    </li> -->
+
                                                     <li class="menu-item">
                                                         <a class="splitting-text-anim-2" data-splitting="chars" href="<?php echo home_url('/blog') ?>">Blog</a>
                                                     </li>
                                                     <li class="menu-item">
                                                         <a class="splitting-text-anim-2" data-splitting="chars" href="#contact-section">Contact</a>
                                                     </li>
-                                                    <!-- <li class="menu-item menu-item-has-children has-children">
-                                                        <a class="splitting-text-anim-2" data-splitting="chars">Pages</a>
-                                                        <ul class="sub-menu">
-                                                            <li class="menu-item">
-                                                                <a class="splitting-text-anim-1" data-splitting="chars" href="works-list.html">Works (List)</a>
-                                                            </li>
-                                                            <li class="menu-item">
-                                                                <a class="splitting-text-anim-1" data-splitting="chars" href="works.html">Works (Grid)</a>
-                                                            </li>
-                                                            <li class="menu-item">
-                                                                <a class="splitting-text-anim-1" data-splitting="chars" href="work-single.html">Work Single Page</a>
-                                                            </li>
-                                                            <li class="menu-item">
-                                                                <a class="splitting-text-anim-1" data-splitting="chars" href="blog.html">Blog</a>
-                                                            </li>
-                                                            <li class="menu-item">
-                                                                <a class="splitting-text-anim-1" data-splitting="chars" href="blog-single.html">Single Post</a>
-                                                            </li>
-                                                        </ul>
-                                                    </li> -->
+
                                                 </ul>
+
+
                                             </div>
 
                                             <!-- social -->

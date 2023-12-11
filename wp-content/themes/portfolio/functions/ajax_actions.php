@@ -6,7 +6,10 @@ add_action('wp_ajax_get_contact_data', 'get_contact_data');
 add_action('wp_ajax_nopriv_get_contact_data', 'get_contact_data');
 
 function get_contact_data()
-{
+{ 
+
+
+    print_r('hello') ; 
     $formdata = [];
     wp_parse_str($_POST['get_contact_data'], $formdata);
 
@@ -16,6 +19,10 @@ function get_contact_data()
     $subject = sanitize_text_field($formdata['subject']);
     $message = sanitize_text_field($formdata['message']);
 
+    echo "<pre>";
+    print_r($full_name);
+    exit;
+
     $data = array(
         'full_name' => $full_name,
         'email' => $email,
@@ -23,9 +30,7 @@ function get_contact_data()
         'message' => $message,
     );
 
-    // echo "<pre>";
-    // print_r($data);
-    // exit;
+    
 
 
     global $wpdb;
@@ -52,3 +57,7 @@ function get_contact_data()
 
     wp_die();
 }
+
+
+
+
