@@ -159,6 +159,8 @@ get_header();
         </div>
     </section>
 
+
+
     <!-- Section - Skills -->
     <section class="lui-section lui-gradient-center" id="skills-section">
         <!-- Heading -->
@@ -180,61 +182,84 @@ get_header();
             <div class="container">
                 <div class="row">
 
+                    <?php
+                    $skills = get_post_meta(get_the_ID(), "index_skill_items", true);
+                    if (count($skills) > 0) {
+                        foreach ($skills as $key => $skill) {
 
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                        <div class="skills-items">
+                            $title = $des = $perc = '';
+                            if (isset($skill['index_skill_sesction_name'])) {
+                                $title = esc_html($skill['index_skill_sesction_name']);
+                            }
 
-                            <div class="skills-item scrolla-element-anim-1 scroll-animate" data-animate="active">
-                                <h6 class="name">
-                                    <span> PHP </span>
-                                </h6>
-                                <div class="text">
-                                    <div>
-                                        <p>
-                                            Skilled PHP Developer with expertise in developing
-                                            dynamic and scalable web applications, utilizing
-                                            modern frameworks and technologies to deliver
-                                            efficient solutions and enhance user experiences.
-                                        </p>
+                            if (isset($skill['index_skill_sesction_description'])) {
+                                $des = esc_html($skill['index_skill_sesction_description']);
+                            }
+
+                            if (isset($skill['index_skill_sesction_percentage'])) {
+                                $perc = esc_html($skill['index_skill_sesction_percentage']);
+                            }
+
+
+
+
+                    ?>
+
+                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                                <div class="skills-items">
+
+                                    <div class="skills-item scrolla-element-anim-1 scroll-animate" data-animate="active">
+                                        <h6 class="name">
+                                            <span> <?php echo $title; ?> </span>
+                                        </h6>
+                                        <div class="text">
+                                            <div>
+                                                <p>
+                                                    <?php echo $des; ?>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="dots">
+                                            <div class="dot" style="width: <?php echo $perc; ?>%">
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                        <div class="value">
+                                            <span class="num"><?php echo $perc; ?> <span>%</span> </span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="dots">
-                                    <div class="dot" style="width: 85%">
-                                        <span></span>
-                                    </div>
-                                </div>
-                                <div class="value">
-                                    <span class="num">85 <span>%</span> </span>
+                                    <!-- <div class="skills-item scrolla-element-anim-1 scroll-animate" data-animate="active">
+                                        <h6 class="name">
+                                            <span> Flutter </span>
+                                        </h6>
+                                        <div class="text">
+                                            <div>
+                                                <p>
+                                                    Skilled in leveraging Flutter's rich widget library
+                                                    and responsive UI design to create visually stunning
+                                                    and performant apps for Android and iOS platforms.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="dots">
+                                            <div class="dot" style="width: 75%">
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                        <div class="value">
+                                            <span class="num">75 <span>%</span> </span>
+                                        </div>
+                                    </div> -->
+
                                 </div>
                             </div>
-                            <div class="skills-item scrolla-element-anim-1 scroll-animate" data-animate="active">
-                                <h6 class="name">
-                                    <span> Flutter </span>
-                                </h6>
-                                <div class="text">
-                                    <div>
-                                        <p>
-                                            Skilled in leveraging Flutter's rich widget library
-                                            and responsive UI design to create visually stunning
-                                            and performant apps for Android and iOS platforms.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="dots">
-                                    <div class="dot" style="width: 75%">
-                                        <span></span>
-                                    </div>
-                                </div>
-                                <div class="value">
-                                    <span class="num">75 <span>%</span> </span>
-                                </div>
-                            </div>
 
-                        </div>
-                    </div>
+                    <?php
+                        }
+                    }
+                    ?>
 
-                    <!-- 
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <!-- <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                         <div class="skills-items">
 
                             <div class="skills-item scrolla-element-anim-1 scroll-animate" data-animate="active">
@@ -342,6 +367,9 @@ get_header();
                     </div> -->
 
 
+
+
+
                 </div>
 
                 <div class="lui-bgtitle">
@@ -350,8 +378,6 @@ get_header();
             </div>
         </div>
     </section>
-
-
 
 
 
@@ -460,7 +486,8 @@ get_header();
                                                     <?php echo the_excerpt(); ?>
                                                 </p>
                                             </div>
-                                            <a href="work-single.html" class="lnk">See project</a>
+                                            <!-- <a href="<?php //the_permalink(); 
+                                                            ?>" class="lnk">See project</a> -->
                                         </div>
                                         <div class="bg-img" style="background-image: url(<?php echo get_post_meta(get_the_ID(), 'single_work_back_image', true) ?>"></div>
                                     </div>
@@ -491,12 +518,6 @@ get_header();
             </div>
         </div>
     </section>
-
-
-
-
-
-    
 
     <!-- Section - Resume final -->
     <section class="lui-section lui-gradient-bottom" id="resume-section">
@@ -731,7 +752,7 @@ get_header();
     </section>
 
 
-    <!-- Section - Contacts done but contact form still not working -->
+    <!-- Section - Contacts done final -->
     <section class="lui-section lui-gradient-bottom" id="contact-section">
         <!-- Heading -->
         <div class="lui-heading">
@@ -806,7 +827,7 @@ get_header();
                             <div class="contacts-form">
 
 
-                                <form id="get_contact_form" ajax_url="<?php echo admin_url('admin-ajax.php'); ?>" >
+                                <form id="get_contact_form" ajax_url="<?php echo admin_url('admin-ajax.php'); ?>">
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                             <div class="group">
@@ -866,6 +887,279 @@ get_header();
             </div>
         </div>
     </section>
+
+
+    <!-- section blog start  -->
+
+    <section class="lui-section lui-gradient-top" id="blog-section" style="display: none;">
+
+        <!-- Heading -->
+        <div class="lui-heading">
+            <div class="container">
+
+                <div class="m-titles align-center">
+                    <h2 class="m-title splitting-text-anim-1 scroll-animate words splitting animate__active animate__animated" data-splitting="words" data-animate="active" style="--word-total: 2; visibility: visible;"><span> <span class="word" data-word="Latest" style="--word-index: 0;">Latest</span><span class="whitespace"> </span><span class="word" data-word="Blog" style="--word-index: 1;">Blog</span> </span></h2>
+                    <div class="m-subtitle splitting-text-anim-1 scroll-animate words splitting animate__active animate__animated" data-splitting="words" data-animate="active" style="--word-total: 4; visibility: visible;"><span> <span class="word" data-word="my" style="--word-index: 0;">my</span> <b><span class="word" data-word="Articles" style="--word-index: 1;">Articles</span><span class="whitespace"> </span><span class="word" data-word="and" style="--word-index: 2;">and</span><span class="whitespace"> </span><span class="word" data-word="Advice" style="--word-index: 3;">Advice</span></b></span></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Archive -->
+        <div class="v-line v-line-right">
+            <div class="container">
+
+                <div class="blog-items row">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div class="archive-item scrolla-element-anim-1 scroll-animate animate__active animate__animated" data-animate="active" style="visibility: visible;">
+                            <div class="image">
+                                <a href="blog-single.html">
+                                    <img decoding="async" src="assets/images/single7.jpg" alt="The Main Thing For The Designer">
+                                </a>
+                            </div>
+                            <div class="desc">
+                                <div class="category lui-subtitle">
+                                    <span>October 31, 2022</span>
+                                </div>
+                                <h5 class="lui-title">
+                                    <a href="blog-single.html">The Main Thing For The Designer</a>
+                                </h5>
+                                <div class="lui-text">
+                                    <p>Vivamus interdum suscipit lacus. Nunc ultrices accumsan mattis. Aliquam vel sem vel velit efficitur malesuada. Donec arcu lacus, ornare eget… </p>
+                                    <div class="readmore">
+                                        <a href="blog-single.html" class="lnk">Read more</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div class="archive-item scrolla-element-anim-1 scroll-animate animate__active animate__animated" data-animate="active" style="visibility: visible;">
+                            <div class="image">
+                                <a href="blog-single.html">
+                                    <img decoding="async" src="assets/images/blog-4-scaled-1.jpg" alt="Follow Your Own Design Process">
+                                </a>
+                            </div>
+                            <div class="desc">
+                                <div class="category lui-subtitle">
+                                    <span>October 31, 2022</span>
+                                </div>
+                                <h5 class="lui-title">
+                                    <a href="blog-single.html">Follow Your Own Design Process</a>
+                                </h5>
+                                <div class="lui-text">
+                                    <p>Vivamus interdum suscipit lacus. Nunc ultrices accumsan mattis. Aliquam vel sem vel velit efficitur malesuada. Donec arcu lacus, ornare eget… </p>
+                                    <div class="readmore">
+                                        <a href="blog-single.html" class="lnk">Read more</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div class="archive-item scrolla-element-anim-1 scroll-animate animate__active animate__animated" data-animate="active" style="visibility: visible;">
+                            <div class="image">
+                                <a href="blog-single.html">
+                                    <img decoding="async" src="assets/images/blog-2.jpg" alt="Usability Secrets to Create Better Interfaces">
+                                </a>
+                            </div>
+                            <div class="desc">
+                                <div class="category lui-subtitle">
+                                    <span>November 28, 2021</span>
+                                </div>
+                                <h5 class="lui-title">
+                                    <a href="blog-single.html">Usability Secrets to Create Better Interfaces</a>
+                                </h5>
+                                <div class="lui-text">
+                                    <p>Vivamus interdum suscipit lacus. Nunc ultrices accumsan mattis. Aliquam vel sem vel velit efficitur malesuada. Donec arcu lacus, ornare eget… </p>
+                                    <div class="readmore">
+                                        <a href="blog-single.html" class="lnk">Read more</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="load-more">
+                    <a href="blog.html" class="btn scrolla-element-anim-1 scroll-animate animate__active animate__animated" data-animate="active" style="visibility: visible;">
+                        <span>View Blog</span>
+                    </a>
+                </div>
+
+                <div class="lui-bgtitle">
+                    <span> Blog </span>
+                </div>
+
+                <div class="v-line-block"><span></span></div>
+            </div>
+        </div>
+
+    </section>
+
+
+
+
+
+    <!-- section pricing  -->
+
+    <section class="lui-section lui-gradient-center" id="pricing-section" style="display: none;">
+
+        <!-- Heading -->
+        <div class="lui-heading">
+            <div class="container">
+
+                <div class="m-titles align-center">
+                    <h2 class="m-title splitting-text-anim-1 scroll-animate words splitting animate__active animate__animated" data-splitting="words" data-animate="active" style="--word-total: 1; visibility: visible;"><span> <span class="word" data-word="Pricing" style="--word-index: 0;">Pricing</span> </span></h2>
+                    <div class="m-subtitle splitting-text-anim-1 scroll-animate words splitting animate__active animate__animated" data-splitting="words" data-animate="active" style="--word-total: 3; visibility: visible;"><span> <span class="word" data-word="my" style="--word-index: 0;">my</span> <b><span class="word" data-word="Price" style="--word-index: 1;">Price</span><span class="whitespace"> </span><span class="word" data-word="Board" style="--word-index: 2;">Board</span></b></span></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Pricing -->
+        <div class="v-line v-line-left" style="display: none;">
+            <div class="container">
+
+                <div class="pricing-items row">
+                    <div class="pricing-col col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                        <div class="pricing-item scrolla-element-anim-1 scroll-animate animate__active animate__animated" data-animate="active" style="visibility: visible;">
+                            <div class="lui-subtitle">
+                                <span> Hourley Basis </span>
+                            </div>
+                            <div class="icon"></div>
+                            <div class="price">
+                                <span> 39 <b>$</b>
+                                </span>
+                                <em>Hour</em>
+                            </div>
+                            <div class="lui-text">
+                                <div>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
+                                </div>
+                            </div>
+                            <div class="list">
+                                <div>
+                                    <ul>
+                                        <li>
+                                            <i class="fas fa-check"></i>Brand Design
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-check"></i>Web Development
+                                        </li>
+                                        <li>
+                                            <em>Advertising</em>
+                                        </li>
+                                        <li>
+                                            <em>Photography</em>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <a href="#contact-section" class="btn btn-solid">
+                                <span>Start Project</span>
+                            </a>
+                            <div class="bg-img" style="background-image: url(assets/images/pat-2.png);"></div>
+                        </div>
+                    </div>
+                    <div class="pricing-col center col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                        <div class="label">
+                            <span> Popular </span>
+                        </div>
+                        <div class="pricing-item scrolla-element-anim-1 scroll-animate animate__active animate__animated" data-animate="active" style="visibility: visible;">
+                            <div class="lui-subtitle">
+                                <span> Freelancing </span>
+                            </div>
+                            <div class="icon"></div>
+                            <div class="price">
+                                <span> 259 <b>$</b>
+                                </span>
+                                <em>Week</em>
+                            </div>
+                            <div class="lui-text">
+                                <div>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
+                                </div>
+                            </div>
+                            <div class="list">
+                                <div>
+                                    <ul>
+                                        <li>
+                                            <i class="fas fa-check"></i>Brand Design
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-check"></i>Web Development
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-check"></i>Advertising
+                                        </li>
+                                        <li>
+                                            <em>Photography</em>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <a href="#contact-section" class="btn btn-solid">
+                                <span>Start Project</span>
+                            </a>
+                            <div class="bg-img" style="background-image: url(assets/images/pat-2.png);"></div>
+                        </div>
+                    </div>
+                    <div class="pricing-col col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                        <div class="pricing-item scrolla-element-anim-1 scroll-animate animate__active animate__animated" data-animate="active" style="visibility: visible;">
+                            <div class="lui-subtitle">
+                                <span> Full Time </span>
+                            </div>
+                            <div class="icon"></div>
+                            <div class="price">
+                                <span> 1.249 <b>$</b>
+                                </span>
+                                <em>Month</em>
+                            </div>
+                            <div class="lui-text">
+                                <div>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
+                                </div>
+                            </div>
+                            <div class="list">
+                                <div>
+                                    <ul>
+                                        <li>
+                                            <i class="fas fa-check"></i>Brand Design
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-check"></i>Web Development
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-check"></i>Advertising
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-check"></i>Photography
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <a href="#contact-section" class="btn btn-solid">
+                                <span>Start Project</span>
+                            </a>
+                            <div class="bg-img" style="background-image: url(assets/images/pat-2.png);"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lui-bgtitle">
+                    <span> Pricing </span>
+                </div>
+
+                <div class="v-line-block"><span></span></div>
+            </div>
+        </div>
+
+    </section>
+
+
+
+
 </div>
 
 <?php
