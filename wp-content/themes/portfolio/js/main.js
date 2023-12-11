@@ -8,7 +8,7 @@ jQuery(document).ready(function () {
     
     var ajax_url = jQuery(this).attr("ajax_url");
     
-    alert(ajax_url) ; 
+    // alert(ajax_url) ; 
     
     var form = jQuery("#get_contact_form").serialize();
 
@@ -16,13 +16,11 @@ jQuery(document).ready(function () {
     formdata.append("action", "get_contact_data");
     formdata.append("get_contact_data", form);
   
-    var formDataString = "";
-    for (var pair of formdata.entries()) {
-      formDataString += pair[0] + ": " + pair[1] + "\n";
-    }
-    
-    alert(formDataString);
-    
+  
+    // alert('hello');
+    // alert(ajax_url);
+
+
     jQuery.ajax(ajax_url, {
       // Using the localized object here
       type: "POST",
